@@ -1,0 +1,20 @@
+/* Set lebar tabel agar sesuai dengan konten */
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+/* Gaya untuk baris header tabel */
+th {
+    text-align: center;
+}
+
+/* Gaya untuk baris data tabel */
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Other styles can go here */

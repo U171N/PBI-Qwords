@@ -1,0 +1,130 @@
+Dalam membangun sebuah e-commerce dengan tiga jenis pengguna (customer, admin, dan staff), terdapat beberapa struktur database yang umumnya diperlukan. Berikut ini adalah beberapa tabel yang perlu ada dalam database:
+
+Tambahan:Table Slider pada project ecommerce-master kedalam project ini
+
+1. Tabel "users" (sudah):
+   - user_id: int (primary key)
+   - name: string
+   - email: string (unique)
+   - password: string
+   -.username: string
+   -.address : string
+   -.phone   : string
+   -.photo   : string
+   -.department : string
+   - role: string (untuk menentukan peran pengguna, misalnya: customer, admin, atau staff)
+   - created_at: timestamp
+   -.remember_token:varchar
+   -.email_Verified:timestamp
+   - updated_at: timestamp
+
+2. Tabel "products" (sudah):
+   - id: int (primary key)
+   - name: string
+   - description: text (deskripsi produk)
+   - price: decimal (harga produk)
+   -.amount:int (jumlah stok)
+   - created_at: timestamp
+   - updated_at: timestamp
+
+3. Tabel "orders" (sudah):
+   - id: int (primary key)
+   - user_id: int (foreign key ke tabel users untuk mengambil id "customer")
+   - status: string (status pesanan, misalnya: pending, diproses, selesai)
+   - total_amount: decimal (jumlah total pesanan)
+   - created_at: timestamp
+   - updated_at: timestamp
+
+4. Tabel "order_items" (sudah):
+   - id: int (primary key)
+   - order_id: int (foreign key ke tabel "orders")
+   - product_id: int (foreign key ke tabel "products")
+   - quantity: int (jumlah produk yang dipesan)
+   - price: decimal (harga produk pada saat pemesanan)
+   - created_at: timestamp
+   - updated_at: timestamp
+
+5. Tabel "categories" (sudah):
+   - id: int (primary key)
+   - name: string (nama kategori produk)
+   - created_at: timestamp
+   - updated_at: timestamp
+
+6. Tabel "product_categories" (sudah) ->tidak dipakai:
+   - id: int (primary key)
+   - product_id: int (foreign key ke tabel "products")
+   - category_id: int (foreign key ke tabel "categories")
+   - created_at: timestamp
+   - updated_at: timestamp
+
+7. Tabel "coupons" (sudah):
+
+id: int (primary key)
+code: string (kode kupon)
+discount: decimal (jumlah diskon yang diberikan)
+valid_from: datetime (tanggal mulai berlakunya kupon)
+valid_to: datetime (tanggal berakhirnya kupon)
+created_at: timestamp
+updated_at: timestamp
+
+
+8. Tabel "pengiriman"(untuk mengisi alamat pengiriman) (sudah):ini customer yang isi
+
+id: int (primary key)
+user_id: int (foreign key ke tabel "user")
+address: string (alamat pengiriman)
+city: string (kota)
+state: string (provinsi)
+postal_code: string (kode pos)
+country: string (negara)
+created_at: timestamp
+updated_at: timestamp
+
+
+9.Tabel "shipping_methods" (sudah): ->untuk ekspedisi ->tidak dipakai
+
+id: int (primary key)
+name: string (nama metode pengiriman) ->cod,ambil sendiri,diantar
+order_id: int (foreign key ke tabel "orders")
+courier:string(ini akan muncul jika mengambil opsi diantar)
+price: decimal (biaya total+ongkir)
+created_at: timestamp
+updated_at: timestamp
+
+10. Tabel "payment_methods" (sudah):
+
+id: int (primary key)
+name: string (nama metode pembayaran)
+created_at: timestamp
+updated_at: timestamp
+
+11. Tabel "order_shipments" (sudah): ->tidak dipakai
+
+id: string (primary key)
+order_id: int (foreign key ke tabel "orders")
+shipping_method_id: int (foreign key ke tabel "shipping_methods")
+tracking_number: string (nomor pelacakan pengiriman)
+created_at: timestamp
+updated_at: timestamp
+
+12. Tabel "order_payments" (sudah):
+
+id: int (primary key)
+order_id: int (foreign key ke tabel "orders")
+payment_method_id: int (foreign key ke tabel "payment_methods")
+transaction_id: string (ID transaksi pembayaran) ->tidak diperlukan
+status:int(1 dan 0)
+created_at: timestamp
+updated_at: timestamp
+
+13. Tabel "product_reviews"(sudah):
+
+id: int (primary key)
+product_id: int (foreign key ke tabel "products")
+user_id: int (foreign key ke tabel "customers")
+rating: int (rating atau penilaian customer terhadap produk)
+comment: text (komentar atau ulasan customer)
+created_at: timestamp
+updated_at: timestamp
+
+
